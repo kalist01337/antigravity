@@ -10,6 +10,11 @@ export function ReviewsSection() {
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 
+  const [isHovered, setIsHovered] = useState(false);
+  const animationRef = useRef<number>();
+  const lastTimeRef = useRef<number>(0);
+  const speed = 30; // pixels per second
+
   const updateControls = useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
@@ -17,6 +22,38 @@ export function ReviewsSection() {
     setCanPrev(el.scrollLeft > 1);
     setCanNext(el.scrollLeft < maxLeft);
   }, []);
+
+  // Set up infinite continuous scroll
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+
+    const scrollStep = (timestamp: number) => {
+      if (!lastTimeRef.current) lastTimeRef.current = timestamp;
+      const dt = timestamp - lastTimeRef.current;
+      lastTimeRef.current = timestamp;
+
+      // Only scroll if not hovered
+      if (!isHovered && el) {
+        // Move by delta time * speed (converting ms to seconds)
+        el.scrollLeft += (dt / 1000) * speed;
+
+        // Reset to start if we reach exactly the end of the first original set
+        // Since we duplicated the items (2 sets total), halfway is the end of the first set.
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0;
+        }
+      }
+
+      animationRef.current = requestAnimationFrame(scrollStep);
+    };
+
+    animationRef.current = requestAnimationFrame(scrollStep);
+
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, [isHovered]);
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -37,8 +74,7 @@ export function ReviewsSection() {
   const scrollByCard = (direction: "prev" | "next") => {
     const el = scrollerRef.current;
     if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-review-card='1']");
-    const step = card ? card.offsetWidth + 24 : Math.round(el.clientWidth * 0.8) + 24;
+    const step = Math.round(el.clientWidth * 0.8) + 24;
     const sign = direction === "next" ? 1 : -1;
     el.scrollBy({ left: sign * step, behavior: "smooth" });
   };
@@ -82,13 +118,17 @@ export function ReviewsSection() {
 
       <div
         ref={scrollerRef}
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 pt-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-6 overflow-x-auto pb-8 pt-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={() => setIsHovered(true)}
+        onTouchEnd={() => setIsHovered(false)}
       >
-        {siteConfig.reviews.map((review) => (
+        {/* Render the reviews twice to allow infinite continuous scrolling */}
+        {[...siteConfig.reviews, ...siteConfig.reviews].map((review, i) => (
           <figure
-            key={review.id}
-            data-review-card="1"
-            className="group relative aspect-[3/4] w-[80%] shrink-0 snap-start overflow-hidden rounded-[2rem] border border-white/10 card-premium p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-2 hover:border-brand/30 sm:w-[50%] lg:w-[320px]"
+            key={`${review.id}-${i}`}
+            className="group relative aspect-[3/4] w-[80%] shrink-0 overflow-hidden rounded-[2rem] border border-white/10 card-premium p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-2 hover:border-brand/30 sm:w-[50%] lg:w-[320px]"
           >
             {/* Subtle top glow */}
             <div className="absolute inset-x-0 -top-24 h-48 w-full bg-brand/5 blur-[50px] transition-all duration-500 group-hover:bg-brand/10" />
