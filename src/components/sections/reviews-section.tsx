@@ -13,11 +13,18 @@ export function ReviewsSection() {
   const [isHovered, setIsHovered] = useState(false);
   const animationRef = useRef<number>();
   const lastTimeRef = useRef<number>(0);
+  const scrollPosRef = useRef<number>(0);
   const speed = 30; // pixels per second
 
   const updateControls = useCallback(() => {
     const el = scrollerRef.current;
     if (!el) return;
+
+    // Sync the exact tracking ref if the user scrolled manually (difference > 2px)
+    if (Math.abs(scrollPosRef.current - el.scrollLeft) > 2) {
+      scrollPosRef.current = el.scrollLeft;
+    }
+
     const maxLeft = el.scrollWidth - el.clientWidth - 1;
     setCanPrev(el.scrollLeft > 1);
     setCanNext(el.scrollLeft < maxLeft);
@@ -28,6 +35,9 @@ export function ReviewsSection() {
     const el = scrollerRef.current;
     if (!el) return;
 
+    // Initialize exact pos
+    scrollPosRef.current = el.scrollLeft;
+
     const scrollStep = (timestamp: number) => {
       if (!lastTimeRef.current) lastTimeRef.current = timestamp;
       const dt = timestamp - lastTimeRef.current;
@@ -35,14 +45,14 @@ export function ReviewsSection() {
 
       // Only scroll if not hovered
       if (!isHovered && el) {
-        // Move by delta time * speed (converting ms to seconds)
-        el.scrollLeft += (dt / 1000) * speed;
+        scrollPosRef.current += (dt / 1000) * speed;
 
         // Reset to start if we reach exactly the end of the first original set
-        // Since we duplicated the items (2 sets total), halfway is the end of the first set.
-        if (el.scrollLeft >= el.scrollWidth / 2) {
-          el.scrollLeft = 0;
+        if (scrollPosRef.current >= el.scrollWidth / 2) {
+          scrollPosRef.current = 0;
         }
+
+        el.scrollLeft = scrollPosRef.current;
       }
 
       animationRef.current = requestAnimationFrame(scrollStep);
@@ -80,7 +90,14 @@ export function ReviewsSection() {
   };
 
   return (
-    <section id="reviews" className="section-shell pb-24 pt-10 sm:pb-32 sm:pt-16 bg-surface bg-obsidian-gradient">
+    <section
+      id="reviews"
+      className="section-shell pb-24 pt-10 sm:pb-32 sm:pt-16 bg-surface bg-obsidian-gradient"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => setIsHovered(false)}
+    >
       <Reveal amount={0.1}>
         <div className="mb-12 flex flex-col md:flex-row items-end justify-between gap-6">
           <div className="flex flex-col items-start text-left">
@@ -119,10 +136,6 @@ export function ReviewsSection() {
       <div
         ref={scrollerRef}
         className="flex gap-6 overflow-x-auto pb-8 pt-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onTouchStart={() => setIsHovered(true)}
-        onTouchEnd={() => setIsHovered(false)}
       >
         {/* Render the reviews twice to allow infinite continuous scrolling */}
         {[...siteConfig.reviews, ...siteConfig.reviews].map((review, i) => (
