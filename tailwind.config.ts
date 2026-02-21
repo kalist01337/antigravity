@@ -15,9 +15,9 @@ const config: Config = {
         ink: "#ffffff", // Pure white for text
         inkSoft: "#d1d5db", // gray-300
         inkMuted: "#9ca3af", // gray-400
-        brand: "#D4AF37", // Metallic Gold
-        brandSoft: "#e5c158", // Light Gold
-        brandDark: "#b5952f", // Dark Gold
+        brand: "#C5A059", // Classic deep gold
+        brandSoft: "#D4B572", // Softer light gold
+        brandDark: "#9E7D3F", // Darker rich bronze-gold
         // Additional premium accents
         platinum: "#E5E4E2",
         brass: "#B5A642",

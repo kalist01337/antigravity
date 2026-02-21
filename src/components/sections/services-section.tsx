@@ -32,7 +32,10 @@ export function ServicesSection() {
             return (
               <article
                 key={service}
-                className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl card-premium p-8"
+                className={`group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-3xl card-premium p-8 ${index === siteConfig.services.length - 1 && siteConfig.services.length % 3 === 1
+                    ? "lg:col-start-2"
+                    : ""
+                  }`}
               >
                 {/* Subtle top glow */}
                 <div className="absolute inset-x-0 -top-24 h-48 w-full bg-brand/5 blur-[50px] transition-all duration-500 group-hover:bg-brand/15" />
