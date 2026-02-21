@@ -99,7 +99,7 @@ export function ReviewsSection() {
       onTouchEnd={() => setIsHovered(false)}
     >
       <Reveal amount={0.1}>
-        <div className="mb-12 flex flex-col md:flex-row items-end justify-between gap-6">
+        <div className="mb-12 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
           <div className="flex flex-col items-start text-left">
             <p className="inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand shadow-[inset_0_0_10px_rgba(212,175,55,0.1)] backdrop-blur-sm">
               <MessageIcon className="h-3.5 w-3.5" />

@@ -15,9 +15,9 @@ export function FAQSection() {
         {/* Left: Sticky Header */}
         <div className="lg:sticky lg:top-32">
           <p className="inline-block rounded-full border border-brand/40 bg-brand/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand shadow-[inset_0_0_10px_rgba(197,160,89,0.1)] backdrop-blur-sm">FAQ</p>
-          <h2 className="mt-6 font-serif font-bold text-[2.5rem] leading-[1.1] text-ink md:text-[3.5rem]">Частые вопросы</h2>
-          <div className="mt-8 h-px w-24 bg-gradient-to-r from-brand/80 to-transparent" />
-          <p className="mt-8 text-[1.1rem] leading-relaxed text-inkMuted">
+          <h2 className="mt-4 font-serif font-bold text-[2rem] leading-[1.1] text-ink md:text-[2.8rem]">Частые вопросы</h2>
+          <div className="mt-6 h-px w-24 bg-gradient-to-r from-brand/80 to-transparent" />
+          <p className="mt-6 text-[1rem] md:text-[1.1rem] leading-relaxed text-inkMuted">
             Отвечаем на самые популярные вопросы о нашем подходе и форматах юридического сопровождения.
           </p>
         </div>
@@ -35,7 +35,7 @@ export function FAQSection() {
                   className="flex w-full items-center justify-between gap-6 py-6 md:py-8 text-left transition-colors"
                   aria-expanded={isOpen}
                 >
-                  <span className={`font-serif text-[1.15rem] md:text-[1.4rem] font-bold transition-all duration-300 ${isOpen ? "text-brand" : "text-ink group-hover:text-brandSoft"}`}>
+                  <span className={`font-serif text-[1.05rem] md:text-[1.25rem] font-bold transition-all duration-300 ${isOpen ? "text-brand" : "text-ink group-hover:text-brandSoft"}`}>
                     {item.question}
                   </span>
                   <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? "border-brand bg-brand/10 text-brand rotate-45" : "border-white/10 text-inkMuted group-hover:border-brand/40 group-hover:text-brand"}`}>
@@ -54,7 +54,7 @@ export function FAQSection() {
                       exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <p className="pb-8 pr-12 text-[1.05rem] leading-relaxed text-inkMuted">{item.answer}</p>
+                      <p className="pb-8 pr-8 md:pr-12 text-[0.95rem] md:text-[1rem] leading-relaxed text-inkMuted">{item.answer}</p>
                     </motion.div>
                   ) : null}
                 </AnimatePresence>
