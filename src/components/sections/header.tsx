@@ -15,9 +15,9 @@ const mobileNavIcons: Record<string, ComponentType<{ className?: string }>> = {
 export function Header() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 mx-4 flex justify-center pointer-events-none md:top-6 lg:top-8">
-      <div className="pointer-events-auto flex items-center justify-between gap-4 rounded-full border border-slate-200/60 bg-white/80 px-4 py-2 shadow-xl shadow-slate-200/50 backdrop-blur-md md:gap-8 md:px-6 md:py-3 lg:gap-12 transition-all">
+      <div className="pointer-events-auto flex items-center justify-between gap-4 rounded-full border border-white/10 bg-surfaceSoft/80 px-4 py-2 shadow-[0_4px_30px_rgba(0,0,0,0.5)] backdrop-blur-md md:gap-8 md:px-6 md:py-3 lg:gap-12 transition-all">
         {/* Logo */}
-        <Link href="/" prefetch={false} className="shrink-0 transition-opacity hover:opacity-70">
+        <Link href="/" prefetch={false} className="shrink-0 transition-opacity hover:opacity-70 group">
           <img
             src={siteConfig.media.logo}
             srcSet={`${withBasePath("/gold-360.png")} 360w, ${siteConfig.media.logo} 720w, ${withBasePath("/gold.png")} 1320w`}
@@ -26,7 +26,7 @@ export function Header() {
             width={720}
             height={213}
             decoding="async"
-            className="h-auto w-[100px] object-contain md:w-[120px] lg:w-[140px] brightness-0"
+            className="h-auto w-[100px] object-contain md:w-[120px] lg:w-[140px] drop-shadow-[0_0_10px_rgba(212,175,55,0.4)] transition-all group-hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]"
             style={{ imageRendering: "auto" }}
           />
         </Link>
@@ -37,7 +37,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="group relative text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-slate-600 transition-colors hover:text-brand lg:text-[0.75rem]"
+              className="group relative text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-inkSoft transition-colors hover:text-brand lg:text-[0.75rem]"
             >
               {item.label}
               <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-brand transition-all duration-300 group-hover:w-full" />
@@ -49,7 +49,7 @@ export function Header() {
         <div className="flex shrink-0 items-center">
           <a
             href="#contacts"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-4 py-1.5 object-contain text-[0.65rem] font-bold uppercase tracking-wider text-white transition-all shadow-brandGlow hover:bg-brandDark hover:scale-105 hover:shadow-lg md:px-5 md:py-2 md:text-[0.7rem]"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-brand/50 bg-gradient-to-r from-brand to-brandDark px-4 py-1.5 text-[0.65rem] font-bold uppercase tracking-wider text-[#111] transition-all shadow-goldGlow hover:scale-105 md:px-5 md:py-2 md:text-[0.7rem]"
           >
             <MessageIcon className="h-3 w-3 md:h-3.5 md:w-3.5" />
             <span className="hidden sm:inline">Консультация</span>
@@ -59,7 +59,7 @@ export function Header() {
       </div>
 
       {/* Mobile Floating Nav (Bottom Pill) */}
-      <div className="pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/90 p-2 shadow-2xl backdrop-blur-md md:hidden">
+      <div className="pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 items-center justify-center gap-2 rounded-full border border-white/10 bg-surfaceSoft/90 p-2 shadow-[0_10px_40px_rgba(0,0,0,0.8)] backdrop-blur-md md:hidden">
         {siteConfig.nav.map((item) => {
           const Icon = mobileNavIcons[item.href] ?? CircleQuestionIcon;
           return (
@@ -68,7 +68,7 @@ export function Header() {
               href={item.href}
               aria-label={item.label}
               title={item.label}
-              className="flex h-10 w-10 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 hover:text-brand active:scale-95"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-inkSoft transition-colors hover:bg-white/5 hover:text-brand active:scale-95"
             >
               <Icon className="h-5 w-5" />
             </a>

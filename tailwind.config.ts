@@ -6,26 +6,47 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
+        serif: ["var(--font-serif)", "serif"],
       },
       colors: {
-        surface: "#ffffff",
-        surfaceSoft: "#f8fafc", // slate-50
-        surfaceMuted: "#f1f5f9", // slate-100
-        ink: "#0f172a", // slate-900
-        inkSoft: "#334155", // slate-700
-        inkMuted: "#64748b", // slate-500
-        brand: "#2563eb", // blue-600
-        brandSoft: "#3b82f6", // blue-500
-        brandDark: "#1d4ed8", // blue-700
+        surface: "#050505", // Deep obsidian black
+        surfaceSoft: "#111111", // slightly lighter dark
+        surfaceMuted: "#1a1a1a", // dark grey
+        ink: "#ffffff", // Pure white for text
+        inkSoft: "#d1d5db", // gray-300
+        inkMuted: "#9ca3af", // gray-400
+        brand: "#D4AF37", // Metallic Gold
+        brandSoft: "#e5c158", // Light Gold
+        brandDark: "#b5952f", // Dark Gold
+        // Additional premium accents
+        platinum: "#E5E4E2",
+        brass: "#B5A642",
       },
       boxShadow: {
-        premium: "0 20px 40px -10px rgba(0,0,0,0.05)",
-        premiumSoft: "0 10px 30px -5px rgba(0,0,0,0.03)",
-        brandGlow: "0 10px 30px -5px rgba(37,99,235,0.25)",
+        premium: "0 20px 40px -10px rgba(0,0,0,0.8)",
+        premiumSoft: "0 10px 30px -5px rgba(0,0,0,0.5)",
+        brandGlow: "0 10px 30px -5px rgba(212, 175, 55, 0.15)",
+        goldGlow: "0 0 40px -10px rgba(212, 175, 55, 0.3)",
       },
       backgroundImage: {
-        "brand-gradient": "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+        "brand-gradient": "linear-gradient(135deg, #e5c158 0%, #b5952f 100%)",
+        "gold-shimmer": "linear-gradient(to right, transparent 0%, rgba(212, 175, 55, 0.1) 50%, transparent 100%)",
+        "obsidian-gradient": "radial-gradient(circle at center, #111111 0%, #050505 100%)",
       },
+      animation: {
+        'shimmer': 'shimmer 2s linear infinite',
+        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        }
+      }
     },
   },
   plugins: [],

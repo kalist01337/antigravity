@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --bg-main: #ffffff;
-  --bg-soft: #f8fafc;
-  --text-main: #0f172a;
-  --text-muted: #64748b;
-  --accent: #2563eb;
-  --accent-soft: #3b82f6;
+  --bg-main: #050505;
+  --bg-soft: #111111;
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+  --accent: #D4AF37;
+  --accent-soft: #e5c158;
 }
 
 html,
@@ -85,20 +85,21 @@ body {
 
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(226, 232, 240, 1) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.3) 50%, transparent 100%);
 }
 
 .card-premium {
-  background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 1);
-  /* slate-200 */
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
 }
 
 .card-premium:hover {
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.06);
-  border-color: rgba(37, 99, 235, 0.2);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 40px -10px rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
 }
 
 .brand-dot::before {

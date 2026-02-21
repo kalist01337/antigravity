@@ -29,22 +29,22 @@ export function ContactSection() {
 
   return (
     <section id="contacts" className="section-shell pb-24 pt-10">
-      <div className="mb-10 text-center lg:text-left">
-        <p className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand">
+      <div className="mb-10 text-center lg:text-left relative z-10">
+        <p className="inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand shadow-[inset_0_0_10px_rgba(212,175,55,0.1)] backdrop-blur-sm">
           <PhoneIcon className="h-3.5 w-3.5" />
           Контакты
         </p>
-        <h2 className="mt-4 font-extrabold text-[2.2rem] tracking-tight text-ink md:text-[3rem]">Контактная информация</h2>
+        <h2 className="mt-4 font-serif font-bold text-[2.2rem] tracking-tight text-ink md:text-[3rem]">Контактная информация</h2>
       </div>
 
-      <div className="rounded-[2.5rem] bg-white p-6 md:p-8 shadow-2xl shadow-brand/5 border border-slate-200">
+      <div className="rounded-[2.5rem] bg-surfaceSoft/60 p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/5 backdrop-blur-md relative z-10">
         <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
           <aside className="flex flex-col gap-6">
-            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+            <div className="rounded-3xl border border-white/10 bg-surface/80 p-6 shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
               <dl className="space-y-6">
                 <div>
                   <dt className="flex items-center gap-x-2 text-[11px] font-bold uppercase tracking-widest text-brand">
-                    <div className="flex bg-brand/10 p-1.5 rounded-full">
+                    <div className="flex bg-brand/10 p-1.5 rounded-full ring-1 ring-inset ring-brand/20">
                       <PhoneIcon className="h-3.5 w-3.5" />
                     </div>
                     <span>Телефон</span>
@@ -52,7 +52,7 @@ export function ContactSection() {
                   <dd className="mt-2 pl-9">
                     <a
                       href={siteConfig.contacts.phoneHref}
-                      className="text-2xl font-black text-ink transition hover:text-brand"
+                      className="text-2xl font-black text-ink transition hover:text-brandSoft"
                     >
                       {siteConfig.contacts.phoneDisplay}
                     </a>
@@ -61,7 +61,7 @@ export function ContactSection() {
 
                 <div>
                   <dt className="flex items-center gap-x-2 text-[11px] font-bold uppercase tracking-widest text-brand">
-                    <div className="flex bg-brand/10 p-1.5 rounded-full">
+                    <div className="flex bg-brand/10 p-1.5 rounded-full ring-1 ring-inset ring-brand/20">
                       <MailIcon className="h-3.5 w-3.5" />
                     </div>
                     <span>Email</span>
@@ -69,7 +69,7 @@ export function ContactSection() {
                   <dd className="mt-2 pl-9">
                     <a
                       href={siteConfig.contacts.emailHref}
-                      className="text-[16px] font-bold text-inkSoft transition hover:text-brand"
+                      className="text-[16px] font-bold text-inkSoft transition hover:text-brandSoft"
                     >
                       {siteConfig.contacts.email}
                     </a>
@@ -78,7 +78,7 @@ export function ContactSection() {
 
                 <div>
                   <dt className="flex items-center gap-x-2 text-[11px] font-bold uppercase tracking-widest text-brand">
-                    <div className="flex bg-brand/10 p-1.5 rounded-full">
+                    <div className="flex bg-brand/10 p-1.5 rounded-full ring-1 ring-inset ring-brand/20">
                       <MapPinIcon className="h-3.5 w-3.5" />
                     </div>
                     <span>Адрес</span>
@@ -93,7 +93,7 @@ export function ContactSection() {
             <div className="flex flex-wrap gap-3 text-[14px] font-bold">
               <a
                 href={siteConfig.contacts.phoneHref}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-slate-700 shadow-sm transition hover:border-brand/40 hover:text-brand hover:bg-brand/5"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface px-5 py-2.5 text-inkSoft shadow-sm transition hover:border-brand/40 hover:text-brandSoft hover:bg-brand/5"
               >
                 <PhoneIcon className="h-4 w-4" />
                 Позвонить
@@ -102,7 +102,7 @@ export function ContactSection() {
                 href={siteConfig.contacts.whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-slate-700 shadow-sm transition hover:border-brand/40 hover:text-brand hover:bg-brand/5"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface px-5 py-2.5 text-inkSoft shadow-sm transition hover:border-brand/40 hover:text-brandSoft hover:bg-brand/5"
               >
                 <MessageIcon className="h-4 w-4" />
                 WhatsApp
@@ -111,7 +111,7 @@ export function ContactSection() {
                 href={siteConfig.contacts.telegramHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-slate-700 shadow-sm transition hover:border-brand/40 hover:text-brand hover:bg-brand/5"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface px-5 py-2.5 text-inkSoft shadow-sm transition hover:border-brand/40 hover:text-brandSoft hover:bg-brand/5"
               >
                 <TelegramIcon className="h-4 w-4" />
                 Telegram
@@ -119,7 +119,7 @@ export function ContactSection() {
               <a
                 href={siteConfig.contacts.instagramHref}
                 onClick={handleInstagramClick}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-slate-700 shadow-sm transition hover:border-brand/40 hover:text-brand hover:bg-brand/5"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface px-5 py-2.5 text-inkSoft shadow-sm transition hover:border-brand/40 hover:text-brandSoft hover:bg-brand/5"
               >
                 <InstagramIcon className="h-4 w-4" />
                 Instagram
@@ -127,18 +127,18 @@ export function ContactSection() {
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">График</p>
+              <div className="rounded-2xl border border-white/5 bg-surface/50 p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-inkMuted">График</p>
                 <p className="mt-2 text-[15px] font-bold text-ink">Ежедневно с 09:00 до 20:00</p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Ответ</p>
+              <div className="rounded-2xl border border-white/5 bg-surface/50 p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-inkMuted">Ответ</p>
                 <p className="mt-2 text-[15px] font-bold text-ink">В мессенджерах ≈ 10 минут</p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Формат</p>
+              <div className="rounded-2xl border border-white/5 bg-surface/50 p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-inkMuted">Формат</p>
                 <p className="mt-2 text-[15px] font-bold text-ink">Очная и онлайн консультация</p>
               </div>
 
@@ -146,24 +146,24 @@ export function ContactSection() {
                 href={twoGisDirectionsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="group rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-brand hover:shadow-md hover:bg-white"
+                className="group rounded-2xl border border-white/5 bg-surface/50 p-4 text-left transition hover:border-brand/30 hover:bg-brand/10"
               >
-                <p className="text-xs font-bold uppercase tracking-widest text-brand transition-colors group-hover:text-brandDark">Маршрут</p>
-                <p className="mt-2 text-[15px] font-bold text-ink transition-colors group-hover:text-brand">Открыть в 2ГИС</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-brand transition-colors group-hover:text-brandSoft">Маршрут</p>
+                <p className="mt-2 text-[15px] font-bold text-ink transition-colors group-hover:text-ink">Открыть в 2ГИС</p>
               </a>
             </div>
           </aside>
 
-          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 relative shadow-inner">
+          <div className="overflow-hidden rounded-3xl border border-white/10 bg-surface relative shadow-inner">
             {isMapVisible ? (
-              <TwoGisMap lat={mapCenter.lat} lon={mapCenter.lon} className="h-[320px] w-full sm:h-[400px] lg:h-full z-10 relative" />
+              <TwoGisMap lat={mapCenter.lat} lon={mapCenter.lon} className="h-[320px] w-full sm:h-[400px] lg:h-full z-10 relative opacity-90" />
             ) : (
-              <div className="flex h-[320px] w-full flex-col items-center justify-center gap-4 bg-slate-100 px-4 text-center sm:h-[400px] lg:h-full z-10 relative">
-                <p className="max-w-sm text-sm font-medium text-slate-500">Интерактивная карта 2ГИС</p>
+              <div className="flex h-[320px] w-full flex-col items-center justify-center gap-4 bg-surface px-4 text-center sm:h-[400px] lg:h-full z-10 relative">
+                <p className="max-w-sm text-sm font-medium text-inkSoft">Интерактивная карта 2ГИС</p>
                 <button
                   type="button"
                   onClick={() => setIsMapVisible(true)}
-                  className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 text-sm font-bold tracking-wide text-white transition shadow-sm hover:shadow-brandGlow hover:bg-brandDark"
+                  className="inline-flex items-center gap-2 rounded-full border border-brand/50 bg-gradient-to-r from-brand to-brandDark px-6 py-2.5 text-sm font-bold tracking-wide text-[#111] transition shadow-goldGlow hover:scale-105"
                 >
                   Загрузить карту
                 </button>
@@ -172,7 +172,7 @@ export function ContactSection() {
 
             {/* Map Placeholder Graphic Pattern */}
             {!isMapVisible && (
-              <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+              <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: "radial-gradient(#D4AF37 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
             )}
           </div>
         </div>
