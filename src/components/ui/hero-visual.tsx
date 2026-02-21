@@ -30,17 +30,17 @@ export function HeroVisual({ imageSrc, videoSrc, alt }: HeroVisualProps) {
 
   const gradientOverlay = useMemo(
     () =>
-      "linear-gradient(150deg, rgba(11,11,11,0.45) 0%, rgba(11,11,11,0.8) 65%, rgba(11,11,11,0.9) 100%)",
+      "linear-gradient(150deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.8) 65%, rgba(255,255,255,0.9) 100%)",
     [],
   );
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-gold/35 bg-ink/70 shadow-premium">
+    <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-lg">
       <div className="absolute inset-0" style={{ background: gradientOverlay }} aria-hidden />
       <img src={imageSrc} alt={alt} className="h-full min-h-[360px] w-full object-cover opacity-70" />
       {canUseVideo ? (
         <video
-          className="absolute inset-0 h-full w-full object-cover mix-blend-lighten opacity-45"
+          className="absolute inset-0 h-full w-full object-cover mix-blend-multiply opacity-30"
           autoPlay
           muted
           loop
@@ -50,8 +50,8 @@ export function HeroVisual({ imageSrc, videoSrc, alt }: HeroVisualProps) {
           <source src={videoSrc} type="video/mp4" />
         </video>
       ) : null}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gold-line" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gold-line" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-slate-200" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-slate-200" />
     </div>
   );
 }

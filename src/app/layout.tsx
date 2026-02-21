@@ -1,15 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Playfair_Display } from "next/font/google";
+import { Manrope } from "next/font/google"; // Removed Playfair
 import "./globals.css";
 import { FloatingSocial } from "@/components/ui/floating-social";
 import { absoluteUrl, siteConfig, withBasePath } from "@/config/site";
 
-const serif = Playfair_Display({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-serif",
-  weight: ["600", "700"],
-  display: "swap",
-});
 
 const sans = Manrope({
   subsets: ["latin", "cyrillic"],
@@ -58,13 +52,13 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#0b0b0b",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ru">
-      <body className={`${serif.variable} ${sans.variable} bg-ink font-sans text-ivory antialiased`}>
+    <html lang="ru" className="scroll-smooth">
+      <body className={`${sans.variable} bg-surface text-ink font-sans antialiased selection:bg-brand selection:text-white`}>
         {children}
         <FloatingSocial />
       </body>

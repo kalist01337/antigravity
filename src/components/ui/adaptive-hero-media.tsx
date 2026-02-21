@@ -259,7 +259,7 @@ export function AdaptiveHeroMedia({ videoSrc, posterSrc }: AdaptiveHeroMediaProp
       {isIOS && !disableVideo && (!hasStartedPlayback || showIosPlayButton) ? (
         <button
           type="button"
-          className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 rounded-full border border-goldSoft/60 bg-black/60 px-4 py-2 text-xs font-medium text-ivory backdrop-blur-sm"
+          className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 rounded-full border border-slate-200 bg-white/90 px-4 py-2 text-xs font-medium text-ink shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
           onClick={() => {
             if (videoRef.current) {
               videoRef.current.muted = true;

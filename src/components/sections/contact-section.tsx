@@ -28,29 +28,31 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contacts" className="section-shell pb-20">
-      <div className="mb-8">
-        <p className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.25em] text-goldSoft/80">
-          <PhoneIcon className="h-4 w-4" />
+    <section id="contacts" className="section-shell pb-24 pt-10">
+      <div className="mb-10 text-center lg:text-left">
+        <p className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand">
+          <PhoneIcon className="h-3.5 w-3.5" />
           Контакты
         </p>
-        <h2 className="mt-2 font-serif text-3xl text-ivory md:text-4xl">Контактная информация</h2>
+        <h2 className="mt-4 font-extrabold text-[2.2rem] tracking-tight text-ink md:text-[3rem]">Контактная информация</h2>
       </div>
 
-      <div className="card-premium rounded-[2rem] p-6 shadow-premiumSoft sm:p-8">
+      <div className="rounded-[2.5rem] bg-white p-6 md:p-8 shadow-2xl shadow-brand/5 border border-slate-200">
         <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
-          <aside>
-            <div className="rounded-2xl border border-gold/15 bg-black/40 p-5 sm:p-6 shadow-inset">
-              <dl className="space-y-4">
+          <aside className="flex flex-col gap-6">
+            <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+              <dl className="space-y-6">
                 <div>
-                  <dt className="flex items-start gap-x-3 text-[11px] uppercase tracking-[0.22em] text-goldSoft/70">
-                    <PhoneIcon className="mt-[2px] h-4 w-4 shrink-0 text-goldSoft/90" />
+                  <dt className="flex items-center gap-x-2 text-[11px] font-bold uppercase tracking-widest text-brand">
+                    <div className="flex bg-brand/10 p-1.5 rounded-full">
+                      <PhoneIcon className="h-3.5 w-3.5" />
+                    </div>
                     <span>Телефон</span>
                   </dt>
-                  <dd className="mt-1 pl-7">
+                  <dd className="mt-2 pl-9">
                     <a
                       href={siteConfig.contacts.phoneHref}
-                      className="font-serif text-xl leading-none text-ivory transition hover:text-goldSoft"
+                      className="text-2xl font-black text-ink transition hover:text-brand"
                     >
                       {siteConfig.contacts.phoneDisplay}
                     </a>
@@ -58,14 +60,16 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <dt className="flex items-start gap-x-3 text-[11px] uppercase tracking-[0.22em] text-goldSoft/70">
-                    <MailIcon className="mt-[2px] h-4 w-4 shrink-0 text-goldSoft/90" />
+                  <dt className="flex items-center gap-x-2 text-[11px] font-bold uppercase tracking-widest text-brand">
+                    <div className="flex bg-brand/10 p-1.5 rounded-full">
+                      <MailIcon className="h-3.5 w-3.5" />
+                    </div>
                     <span>Email</span>
                   </dt>
-                  <dd className="mt-1 pl-7">
+                  <dd className="mt-2 pl-9">
                     <a
                       href={siteConfig.contacts.emailHref}
-                      className="font-serif text-[15px] tracking-[0.01em] text-ivory/92 transition hover:text-goldSoft hover:underline"
+                      className="text-[16px] font-bold text-inkSoft transition hover:text-brand"
                     >
                       {siteConfig.contacts.email}
                     </a>
@@ -73,21 +77,23 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <dt className="flex items-start gap-x-3 text-[11px] uppercase tracking-[0.22em] text-goldSoft/70">
-                    <MapPinIcon className="mt-[2px] h-4 w-4 shrink-0 text-goldSoft/90" />
+                  <dt className="flex items-center gap-x-2 text-[11px] font-bold uppercase tracking-widest text-brand">
+                    <div className="flex bg-brand/10 p-1.5 rounded-full">
+                      <MapPinIcon className="h-3.5 w-3.5" />
+                    </div>
                     <span>Адрес</span>
                   </dt>
-                  <dd className="mt-1 pl-7 font-serif text-[15px] leading-relaxed tracking-[0.01em] text-ivory/92">
+                  <dd className="mt-2 pl-9 text-[16px] leading-relaxed font-medium text-inkSoft">
                     {fullAddress}
                   </dd>
                 </div>
               </dl>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3 text-[15px]">
+            <div className="flex flex-wrap gap-3 text-[14px] font-bold">
               <a
                 href={siteConfig.contacts.phoneHref}
-                className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#0d0d0d] px-5 py-2.5 text-goldSoft shadow-sm transition hover:border-gold/60 hover:bg-gold/10"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-slate-700 shadow-sm transition hover:border-brand/40 hover:text-brand hover:bg-brand/5"
               >
                 <PhoneIcon className="h-4 w-4" />
                 Позвонить
@@ -96,7 +102,7 @@ export function ContactSection() {
                 href={siteConfig.contacts.whatsappHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#0d0d0d] px-5 py-2.5 text-goldSoft shadow-sm transition hover:border-gold/60 hover:bg-gold/10"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-slate-700 shadow-sm transition hover:border-brand/40 hover:text-brand hover:bg-brand/5"
               >
                 <MessageIcon className="h-4 w-4" />
                 WhatsApp
@@ -105,7 +111,7 @@ export function ContactSection() {
                 href={siteConfig.contacts.telegramHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#0d0d0d] px-5 py-2.5 text-goldSoft shadow-sm transition hover:border-gold/60 hover:bg-gold/10"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-slate-700 shadow-sm transition hover:border-brand/40 hover:text-brand hover:bg-brand/5"
               >
                 <TelegramIcon className="h-4 w-4" />
                 Telegram
@@ -113,55 +119,60 @@ export function ContactSection() {
               <a
                 href={siteConfig.contacts.instagramHref}
                 onClick={handleInstagramClick}
-                className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#0d0d0d] px-5 py-2.5 text-goldSoft shadow-sm transition hover:border-gold/60 hover:bg-gold/10"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-slate-700 shadow-sm transition hover:border-brand/40 hover:text-brand hover:bg-brand/5"
               >
                 <InstagramIcon className="h-4 w-4" />
                 Instagram
               </a>
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-gold/15 bg-black/40 p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-gold/80">График</p>
-                <p className="mt-2 text-[15px] font-medium text-ivory/90">Ежедневно с 09:00 до 20:00</p>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">График</p>
+                <p className="mt-2 text-[15px] font-bold text-ink">Ежедневно с 09:00 до 20:00</p>
               </div>
 
-              <div className="rounded-2xl border border-gold/15 bg-black/40 p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-gold/80">Ответ</p>
-                <p className="mt-2 text-[15px] font-medium text-ivory/90">В мессенджерах ≈ 10 минут</p>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Ответ</p>
+                <p className="mt-2 text-[15px] font-bold text-ink">В мессенджерах ≈ 10 минут</p>
               </div>
 
-              <div className="rounded-2xl border border-gold/15 bg-black/40 p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-gold/80">Формат</p>
-                <p className="mt-2 text-[15px] font-medium text-ivory/90">Очная и онлайн консультация</p>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Формат</p>
+                <p className="mt-2 text-[15px] font-bold text-ink">Очная и онлайн консультация</p>
               </div>
 
               <a
                 href={twoGisDirectionsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="group rounded-2xl border border-gold/15 bg-black/40 p-4 text-left transition hover:border-gold/40 hover:bg-gold/5"
+                className="group rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left transition hover:border-brand hover:shadow-md hover:bg-white"
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-gold/80 group-hover:text-goldSoft">Маршрут</p>
-                <p className="mt-2 text-[15px] font-medium text-ivory/90">Открыть в 2ГИС</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-brand transition-colors group-hover:text-brandDark">Маршрут</p>
+                <p className="mt-2 text-[15px] font-bold text-ink transition-colors group-hover:text-brand">Открыть в 2ГИС</p>
               </a>
             </div>
           </aside>
 
-          <div className="overflow-hidden rounded-2xl border border-gold/30 bg-[#0b0b0b]">
+          <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 relative shadow-inner">
             {isMapVisible ? (
-              <TwoGisMap lat={mapCenter.lat} lon={mapCenter.lon} className="h-[320px] w-full sm:h-[350px] lg:h-full" />
+              <TwoGisMap lat={mapCenter.lat} lon={mapCenter.lon} className="h-[320px] w-full sm:h-[400px] lg:h-full z-10 relative" />
             ) : (
-              <div className="flex h-[320px] w-full flex-col items-center justify-center gap-4 bg-[#0b0b0b] px-4 text-center sm:h-[350px] lg:h-full">
-                <p className="max-w-sm text-sm text-ivory/75">Карта 2ГИС загружается по клику</p>
+              <div className="flex h-[320px] w-full flex-col items-center justify-center gap-4 bg-slate-100 px-4 text-center sm:h-[400px] lg:h-full z-10 relative">
+                <p className="max-w-sm text-sm font-medium text-slate-500">Интерактивная карта 2ГИС</p>
                 <button
                   type="button"
                   onClick={() => setIsMapVisible(true)}
-                  className="inline-flex items-center gap-2 rounded-full border border-gold/45 px-5 py-2 text-sm text-goldSoft transition hover:bg-gold/10"
+                  className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-2.5 text-sm font-bold tracking-wide text-white transition shadow-sm hover:shadow-brandGlow hover:bg-brandDark"
                 >
-                  Показать карту 2ГИС
+                  Загрузить карту
                 </button>
               </div>
+            )}
+
+            {/* Map Placeholder Graphic Pattern */}
+            {!isMapVisible && (
+              <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
             )}
           </div>
         </div>
