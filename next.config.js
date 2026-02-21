@@ -13,6 +13,7 @@ const nextConfig = {
     unoptimized: true,
   },
   basePath,
+  assetPrefix: basePath || undefined,
 };
 
 module.exports = nextConfig;
