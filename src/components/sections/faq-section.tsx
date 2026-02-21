@@ -9,48 +9,59 @@ export function FAQSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="faq" className="section-shell pb-24 relative">
-      <div className="mb-10 text-center sm:text-left relative z-10">
-        <p className="inline-block rounded-full border border-brand/40 bg-brand/5 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand shadow-[inset_0_0_10px_rgba(212,175,55,0.1)] backdrop-blur-sm">FAQ</p>
-        <h2 className="mt-4 font-serif font-bold text-[2.2rem] text-ink md:text-[3rem]">Частые вопросы</h2>
-      </div>
+    <section id="faq" className="section-shell pb-32 relative">
+      <div className="mx-auto max-w-[1200px] grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
 
-      <div className="space-y-3 mx-auto max-w-4xl">
-        {siteConfig.faq.map((item, index) => {
-          const isOpen = openIndex === index;
+        {/* Left: Sticky Header */}
+        <div className="lg:sticky lg:top-32">
+          <p className="inline-block rounded-full border border-brand/40 bg-brand/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand shadow-[inset_0_0_10px_rgba(197,160,89,0.1)] backdrop-blur-sm">FAQ</p>
+          <h2 className="mt-6 font-serif font-bold text-[2.5rem] leading-[1.1] text-ink md:text-[3.5rem]">Частые вопросы</h2>
+          <div className="mt-8 h-px w-24 bg-gradient-to-r from-brand/80 to-transparent" />
+          <p className="mt-8 text-[1.1rem] leading-relaxed text-inkMuted">
+            Отвечаем на самые популярные вопросы о нашем подходе и форматах юридического сопровождения.
+          </p>
+        </div>
 
-          return (
-            <article key={item.question} className="overflow-hidden rounded-2xl border border-white/5 bg-surfaceSoft/80 shadow-[0_4px_20px_rgba(0,0,0,0.3)] backdrop-blur-md transition-all hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] hover:border-white/10">
-              <button
-                type="button"
-                onClick={() => setOpenIndex((current) => (current === index ? null : index))}
-                className="flex w-full items-center justify-between gap-5 p-5 text-left transition-colors hover:bg-white/5"
-                aria-expanded={isOpen}
-              >
-                <span className={`text-sm font-bold md:text-base transition-colors ${isOpen ? "text-brandSoft" : "text-ink"}`}>
-                  {item.question}
-                </span>
-                <span className={`text-xl leading-none transition-transform duration-300 ${isOpen ? "rotate-45 text-brand" : "text-inkMuted"}`}>
-                  +
-                </span>
-              </button>
+        {/* Right: Borderless Minimalist Accordion */}
+        <div className="flex flex-col border-t border-white/10">
+          {siteConfig.faq.map((item, index) => {
+            const isOpen = openIndex === index;
 
-              <AnimatePresence initial={false}>
-                {isOpen ? (
-                  <motion.div
-                    key="content"
-                    initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-                    animate={reduceMotion ? undefined : { height: "auto", opacity: 1 }}
-                    exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <p className="px-5 pb-5 text-sm md:text-base leading-relaxed text-inkSoft">{item.answer}</p>
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-            </article>
-          );
-        })}
+            return (
+              <article key={item.question} className="border-b border-white/10 group">
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex((current) => (current === index ? null : index))}
+                  className="flex w-full items-center justify-between gap-6 py-6 md:py-8 text-left transition-colors"
+                  aria-expanded={isOpen}
+                >
+                  <span className={`font-serif text-[1.15rem] md:text-[1.4rem] font-bold transition-all duration-300 ${isOpen ? "text-brand" : "text-ink group-hover:text-brandSoft"}`}>
+                    {item.question}
+                  </span>
+                  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${isOpen ? "border-brand bg-brand/10 text-brand rotate-45" : "border-white/10 text-inkMuted group-hover:border-brand/40 group-hover:text-brand"}`}>
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen ? (
+                    <motion.div
+                      key="content"
+                      initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                      animate={reduceMotion ? undefined : { height: "auto", opacity: 1 }}
+                      exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <p className="pb-8 pr-12 text-[1.05rem] leading-relaxed text-inkMuted">{item.answer}</p>
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
