@@ -79,20 +79,18 @@ export function ReviewsSection() {
           <figure
             key={review.id}
             data-review-card="1"
-            className="card-premium aspect-[355/392] w-[82%] shrink-0 snap-start overflow-hidden rounded-[2rem] p-3 shadow-premiumSoft transition duration-300 hover:border-gold/30 hover:shadow-[0_12px_30px_rgba(0,0,0,0.5)] sm:w-[50%] lg:w-[320px]"
+            className="card-premium aspect-square w-[85%] shrink-0 snap-start overflow-hidden rounded-[2rem] p-4 shadow-premiumSoft transition duration-300 hover:border-gold/30 hover:shadow-[0_12px_30px_rgba(0,0,0,0.5)] sm:w-[50%] lg:w-[400px]"
           >
-            <div className="relative h-full w-full overflow-hidden rounded-[1.5rem]">
+            <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-[1.5rem] bg-white/5 p-2">
               <img
                 src={review.image}
                 alt={review.alt}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover brightness-[0.8] contrast-[1.05] saturate-[0.95]"
+                className="h-full w-full rounded-xl object-contain"
               />
-              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#080808]/90 to-transparent" />
-              <figcaption className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-2 text-[0.7rem] uppercase tracking-[0.14em] text-goldSoft drop-shadow-md">
-                <span className="font-semibold">{review.title}</span>
-                {review.source ? <span className="text-ivory/60">{review.source}</span> : null}
+              <figcaption className="absolute bottom-2 right-4 flex items-center gap-2 rounded-full bg-black/60 px-3 py-1 text-[0.65rem] uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                <span className="font-medium opacity-80">{review.source ?? "2ГИС"}</span>
               </figcaption>
             </div>
           </figure>
