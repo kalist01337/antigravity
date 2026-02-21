@@ -50,6 +50,8 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: /antigravity
+      - name: Add .nojekyll file
+        run: touch ./out/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
