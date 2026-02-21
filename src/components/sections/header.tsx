@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ComponentType } from "react";
-import { BriefcaseIcon, CheckCircleIcon, CircleQuestionIcon, MessageIcon, PhoneIcon, ScaleIcon, ShieldIcon } from "@/components/ui/icons";
+import { BriefcaseIcon, CheckCircleIcon, CircleQuestionIcon, MessageIcon, ScaleIcon, ShieldIcon } from "@/components/ui/icons";
 import { siteConfig, withBasePath } from "@/config/site";
 
 const mobileNavIcons: Record<string, ComponentType<{ className?: string }>> = {
@@ -14,95 +14,70 @@ const mobileNavIcons: Record<string, ComponentType<{ className?: string }>> = {
 
 export function Header() {
   return (
-    <header className="site-header sticky top-0 z-50 pt-1 sm:pt-2">
-      <div className="section-shell">
-        <div className="site-header-frame mx-auto w-full max-w-[1140px] overflow-hidden rounded-[1.2rem] border border-gold/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] sm:rounded-[2rem] sm:shadow-[0_20px_40px_rgba(0,0,0,0.6)]">
-          <div className="relative px-3 py-1 sm:px-6 sm:py-2">
-            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gold-line opacity-70" />
-            <div className="pointer-events-none absolute inset-x-8 bottom-0 h-px bg-gold-line opacity-70" />
+    <header className="fixed inset-x-0 top-4 z-50 mx-4 flex justify-center pointer-events-none md:top-6 lg:top-8">
+      {/* 
+        The pointer-events-none on header prevents clicks outside the pill, 
+        and pointer-events-auto on the inner pill restores interactions.
+      */}
+      <div className="pointer-events-auto flex items-center justify-between gap-4 rounded-full border border-white/10 bg-[#080808]/70 px-4 py-2 shadow-[0_10px_40px_rgba(0,0,0,0.8)] backdrop-blur-md md:gap-8 md:px-6 md:py-3 lg:gap-12">
+        {/* Logo */}
+        <Link href="/" prefetch={false} className="shrink-0 transition-opacity hover:opacity-80">
+          <img
+            src={siteConfig.media.logo}
+            srcSet={`${withBasePath("/gold-360.png")} 360w, ${siteConfig.media.logo} 720w, ${withBasePath("/gold.png")} 1320w`}
+            sizes="120px"
+            alt={`${siteConfig.brand.name} logo`}
+            width={720}
+            height={213}
+            decoding="async"
+            className="h-auto w-[100px] object-contain md:w-[120px] lg:w-[140px]"
+            style={{ imageRendering: "auto" }}
+          />
+        </Link>
 
-            <div className="flex h-[72px] items-center justify-between gap-3 sm:h-[96px] lg:h-[105px]">
-              <Link href="/" prefetch={false} className="flex items-center">
-                <img
-                  src={siteConfig.media.logo}
-                  srcSet={`${withBasePath("/gold-360.png")} 360w, ${siteConfig.media.logo} 720w, ${withBasePath("/gold.png")} 1320w`}
-                  sizes="(max-width: 639px) 140px, (max-width: 1023px) 210px, (max-width: 1279px) 260px, 320px"
-                  alt={`${siteConfig.brand.name} logo`}
-                  width={720}
-                  height={213}
-                  decoding="async"
-                  className="block h-auto w-[140px] max-w-full object-contain [transform:translateZ(0)] sm:w-[210px] lg:w-[260px] xl:w-[320px]"
-                  style={{ imageRendering: "auto" }}
-                />
-              </Link>
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-6 md:flex lg:gap-8">
+          {siteConfig.nav.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="group relative font-serif text-[0.65rem] uppercase tracking-[0.15em] text-ivory/70 transition-colors hover:text-goldSoft lg:text-[0.7rem]"
+            >
+              {item.label}
+              <span className="absolute -bottom-1 left-0 h-[1px] w-0 bg-gold/80 transition-all duration-300 group-hover:w-full" />
+            </a>
+          ))}
+        </nav>
 
-              <div className="flex items-center gap-1.5 sm:gap-3">
-                <a
-                  href={siteConfig.contacts.phoneHref}
-                  className="hidden items-center gap-2 rounded-full border border-gold/20 px-4 py-1 text-[13px] text-ivory/80 transition hover:border-gold/40 hover:text-goldSoft lg:inline-flex"
-                >
-                  <PhoneIcon className="h-4 w-4 text-gold/80" />
-                  {siteConfig.contacts.phoneDisplay}
-                </a>
-                <a
-                  href="#contacts"
-                  className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-[12px] font-semibold text-goldSoft transition hover:bg-gold/20 sm:px-5 sm:py-2 sm:text-[13px]"
-                >
-                  <MessageIcon className="h-4 w-4" />
-                  Консультация
-                </a>
-              </div>
-            </div>
-
-            <nav className="mt-1">
-              <div className="rounded-2xl border border-gold/15 bg-white/[0.015] p-1.5 sm:hidden">
-                <div className="flex items-center justify-between gap-1.5">
-                  {siteConfig.nav.map((item) => {
-                    const Icon = mobileNavIcons[item.href] ?? CircleQuestionIcon;
-
-                    return (
-                      <a
-                        key={item.href}
-                        href={item.href}
-                        aria-label={item.label}
-                        title={item.label}
-                        className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/20 bg-white/[0.01] text-ivory/90 transition hover:border-gold/45 hover:bg-gold/10 hover:text-goldSoft"
-                      >
-                        <Icon className="h-3.5 w-3.5 text-goldSoft/95" />
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="hidden w-full overflow-x-auto rounded-xl border border-gold/15 bg-[#101010]/80 p-1 sm:block shadow-premiumSoft">
-                <div className="mx-auto flex w-full max-w-[800px] items-center justify-between">
-                  {siteConfig.nav.map((item, index) => {
-                    const Icon = mobileNavIcons[item.href] ?? CircleQuestionIcon;
-
-                    return (
-                      <div key={item.href} className="flex items-center">
-                        <a
-                          href={item.href}
-                          className="group relative flex items-center justify-center rounded-lg px-4 py-2 text-center font-serif text-[0.68rem] uppercase tracking-[0.15em] text-ivory/70 transition hover:text-goldSoft sm:px-6 sm:text-[0.7rem]"
-                        >
-                          <span className="inline-flex items-center gap-2">
-                            <Icon className="hidden h-3.5 w-3.5 text-gold/60 transition-colors group-hover:text-gold/90 lg:block" />
-                            <span>{item.label}</span>
-                          </span>
-                          <span className="pointer-events-none absolute inset-x-4 -bottom-px h-[1.5px] scale-x-0 bg-gold/80 transition-transform duration-300 group-hover:scale-x-100" />
-                        </a>
-                        {index < siteConfig.nav.length - 1 && (
-                          <div className="h-3 w-px bg-gold/20" />
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </nav>
-          </div>
+        {/* CTA Button */}
+        <div className="flex shrink-0 items-center">
+          <a
+            href="#contacts"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold to-goldSoft px-4 py-1.5 object-contain text-[0.65rem] font-bold uppercase tracking-wider text-[#0a0a0a] transition-all hover:scale-105 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] md:px-5 md:py-2 md:text-[0.7rem]"
+          >
+            <MessageIcon className="h-3 w-3 md:h-3.5 md:w-3.5" />
+            <span className="hidden sm:inline">Консультация</span>
+            <span className="sm:hidden">Связь</span>
+          </a>
         </div>
+      </div>
+
+      {/* Mobile Floating Nav (Bottom Pill) */}
+      <div className="pointer-events-auto fixed bottom-6 left-1/2 flex -translate-x-1/2 items-center justify-center gap-2 rounded-full border border-white/10 bg-[#080808]/80 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md md:hidden">
+        {siteConfig.nav.map((item) => {
+          const Icon = mobileNavIcons[item.href] ?? CircleQuestionIcon;
+          return (
+            <a
+              key={item.href}
+              href={item.href}
+              aria-label={item.label}
+              title={item.label}
+              className="flex h-10 w-10 items-center justify-center rounded-full text-ivory/60 transition-colors hover:bg-white/5 hover:text-goldSoft active:scale-95"
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          );
+        })}
       </div>
     </header>
   );
