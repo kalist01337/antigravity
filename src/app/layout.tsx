@@ -1,0 +1,73 @@
+import type { Metadata, Viewport } from "next";
+import { Manrope, Playfair_Display } from "next/font/google";
+import "./globals.css";
+import { FloatingSocial } from "@/components/ui/floating-social";
+import { absoluteUrl, siteConfig, withBasePath } from "@/config/site";
+
+const serif = Playfair_Display({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-serif",
+  weight: ["600", "700"],
+  display: "swap",
+});
+
+const sans = Manrope({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.seo.siteUrl),
+  title: siteConfig.seo.title,
+  description: siteConfig.seo.description,
+  icons: {
+    icon: withBasePath("/favicon.png"),
+    shortcut: withBasePath("/favicon.png"),
+    apple: withBasePath("/favicon.png"),
+  },
+  alternates: {
+    canonical: absoluteUrl("/"),
+  },
+  openGraph: {
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
+    url: absoluteUrl("/"),
+    siteName: siteConfig.brand.name,
+    locale: siteConfig.seo.locale,
+    type: "website",
+    images: [
+      {
+        url: siteConfig.media.heroImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.brand.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.seo.title,
+    description: siteConfig.seo.description,
+    images: [siteConfig.media.heroImage],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0b0b0b",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="ru">
+      <body className={`${serif.variable} ${sans.variable} bg-ink font-sans text-ivory antialiased`}>
+        {children}
+        <FloatingSocial />
+      </body>
+    </html>
+  );
+}

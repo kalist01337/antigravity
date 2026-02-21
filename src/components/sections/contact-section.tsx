@@ -1,0 +1,171 @@
+"use client";
+
+import { type MouseEvent, useMemo, useState } from "react";
+import {
+  InstagramIcon,
+  MailIcon,
+  MapPinIcon,
+  MessageIcon,
+  PhoneIcon,
+  TelegramIcon,
+} from "@/components/ui/icons";
+import { TwoGisMap } from "@/components/ui/two-gis-map";
+import { siteConfig } from "@/config/site";
+
+export function ContactSection() {
+  const [isMapVisible, setIsMapVisible] = useState(false);
+  const fullAddress = useMemo(() => siteConfig.contacts.addressLines.join(" "), []);
+  const mapCenter = useMemo(() => ({ lat: 51.130526, lon: 71.428731 }), []);
+  const twoGisDirectionsUrl =
+    "https://2gis.kz/astana/directions/points/%7C71.428731%2C51.130526%3B70000001052001652?m=71.545689%2C51.086376%2F12.86";
+  const instagramAndroidIntent =
+    "intent://instagram.com/_u/legal_protectionkz/#Intent;package=com.instagram.android;scheme=https;S.browser_fallback_url=https%3A%2F%2Fwww.instagram.com%2Flegal_protectionkz%2F;end";
+
+  const handleInstagramClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (typeof navigator === "undefined" || !/Android/i.test(navigator.userAgent)) return;
+    event.preventDefault();
+    window.location.href = instagramAndroidIntent;
+  };
+
+  return (
+    <section id="contacts" className="section-shell pb-20">
+      <div className="mb-8">
+        <p className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.25em] text-goldSoft/80">
+          <PhoneIcon className="h-4 w-4" />
+          Контакты
+        </p>
+        <h2 className="mt-2 font-serif text-3xl text-ivory md:text-4xl">Контактная информация</h2>
+      </div>
+
+      <div className="card-premium rounded-[2rem] p-6 shadow-premiumSoft sm:p-8">
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
+          <aside>
+            <div className="rounded-2xl border border-gold/15 bg-black/40 p-5 sm:p-6 shadow-inset">
+              <dl className="space-y-4">
+                <div>
+                  <dt className="flex items-start gap-x-3 text-[11px] uppercase tracking-[0.22em] text-goldSoft/70">
+                    <PhoneIcon className="mt-[2px] h-4 w-4 shrink-0 text-goldSoft/90" />
+                    <span>Телефон</span>
+                  </dt>
+                  <dd className="mt-1 pl-7">
+                    <a
+                      href={siteConfig.contacts.phoneHref}
+                      className="font-serif text-xl leading-none text-ivory transition hover:text-goldSoft"
+                    >
+                      {siteConfig.contacts.phoneDisplay}
+                    </a>
+                  </dd>
+                </div>
+
+                <div>
+                  <dt className="flex items-start gap-x-3 text-[11px] uppercase tracking-[0.22em] text-goldSoft/70">
+                    <MailIcon className="mt-[2px] h-4 w-4 shrink-0 text-goldSoft/90" />
+                    <span>Email</span>
+                  </dt>
+                  <dd className="mt-1 pl-7">
+                    <a
+                      href={siteConfig.contacts.emailHref}
+                      className="font-serif text-[15px] tracking-[0.01em] text-ivory/92 transition hover:text-goldSoft hover:underline"
+                    >
+                      {siteConfig.contacts.email}
+                    </a>
+                  </dd>
+                </div>
+
+                <div>
+                  <dt className="flex items-start gap-x-3 text-[11px] uppercase tracking-[0.22em] text-goldSoft/70">
+                    <MapPinIcon className="mt-[2px] h-4 w-4 shrink-0 text-goldSoft/90" />
+                    <span>Адрес</span>
+                  </dt>
+                  <dd className="mt-1 pl-7 font-serif text-[15px] leading-relaxed tracking-[0.01em] text-ivory/92">
+                    {fullAddress}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3 text-[15px]">
+              <a
+                href={siteConfig.contacts.phoneHref}
+                className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#0d0d0d] px-5 py-2.5 text-goldSoft shadow-sm transition hover:border-gold/60 hover:bg-gold/10"
+              >
+                <PhoneIcon className="h-4 w-4" />
+                Позвонить
+              </a>
+              <a
+                href={siteConfig.contacts.whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#0d0d0d] px-5 py-2.5 text-goldSoft shadow-sm transition hover:border-gold/60 hover:bg-gold/10"
+              >
+                <MessageIcon className="h-4 w-4" />
+                WhatsApp
+              </a>
+              <a
+                href={siteConfig.contacts.telegramHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#0d0d0d] px-5 py-2.5 text-goldSoft shadow-sm transition hover:border-gold/60 hover:bg-gold/10"
+              >
+                <TelegramIcon className="h-4 w-4" />
+                Telegram
+              </a>
+              <a
+                href={siteConfig.contacts.instagramHref}
+                onClick={handleInstagramClick}
+                className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-[#0d0d0d] px-5 py-2.5 text-goldSoft shadow-sm transition hover:border-gold/60 hover:bg-gold/10"
+              >
+                <InstagramIcon className="h-4 w-4" />
+                Instagram
+              </a>
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-gold/15 bg-black/40 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-gold/80">График</p>
+                <p className="mt-2 text-[15px] font-medium text-ivory/90">Ежедневно с 09:00 до 20:00</p>
+              </div>
+
+              <div className="rounded-2xl border border-gold/15 bg-black/40 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-gold/80">Ответ</p>
+                <p className="mt-2 text-[15px] font-medium text-ivory/90">В мессенджерах ≈ 10 минут</p>
+              </div>
+
+              <div className="rounded-2xl border border-gold/15 bg-black/40 p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-gold/80">Формат</p>
+                <p className="mt-2 text-[15px] font-medium text-ivory/90">Очная и онлайн консультация</p>
+              </div>
+
+              <a
+                href={twoGisDirectionsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group rounded-2xl border border-gold/15 bg-black/40 p-4 text-left transition hover:border-gold/40 hover:bg-gold/5"
+              >
+                <p className="text-xs uppercase tracking-[0.2em] text-gold/80 group-hover:text-goldSoft">Маршрут</p>
+                <p className="mt-2 text-[15px] font-medium text-ivory/90">Открыть в 2ГИС</p>
+              </a>
+            </div>
+          </aside>
+
+          <div className="overflow-hidden rounded-2xl border border-gold/30 bg-[#0b0b0b]">
+            {isMapVisible ? (
+              <TwoGisMap lat={mapCenter.lat} lon={mapCenter.lon} className="h-[320px] w-full sm:h-[350px] lg:h-full" />
+            ) : (
+              <div className="flex h-[320px] w-full flex-col items-center justify-center gap-4 bg-[#0b0b0b] px-4 text-center sm:h-[350px] lg:h-full">
+                <p className="max-w-sm text-sm text-ivory/75">Карта 2ГИС загружается по клику</p>
+                <button
+                  type="button"
+                  onClick={() => setIsMapVisible(true)}
+                  className="inline-flex items-center gap-2 rounded-full border border-gold/45 px-5 py-2 text-sm text-goldSoft transition hover:bg-gold/10"
+                >
+                  Показать карту 2ГИС
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
